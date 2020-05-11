@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/octojus"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/toools"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ldjo"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jacaboo"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MobileAgentsInfrastructure"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/java4unix"/>
+	<classpathentry kind="lib" path="/dependencies/hppc-0.6.0.jar" sourcepath="/user/nchleq/home/.m2/repository/com/carrotsearch/hppc/0.6.0/hppc-0.6.0-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/client-server"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/oscilloscup"/>
+	<classpathentry kind="lib" path="/dependencies/high-scale-lib-1.0.7-SNAPSHOT.jar" sourcepath="/user/nchleq/home/BigGraphs/BigGrph/high-scale-lib/target/high-scale-lib-1.0.7-SNAPSHOT-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/biggrph-collections"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

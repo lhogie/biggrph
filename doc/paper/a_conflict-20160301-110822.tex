@@ -1,0 +1,123 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Nicolas Chleq, Luc Hogie, Michel Syska}
+\begin{document}
+
+
+\section{Introduction}
+
+There exist numerous interconnection networks --- such as roads network, social networks, neuron networks, relational databases, etc --- that can be represented by graphs  that are too large to be stored in the main memory of one single computer. Using a distributed graph data structure allows to load the graph in the memory of multiple computers. Unfortunately the latency of the network connecting the computers make sequential algorithms impracticable. An algorithm for such a distributed graph needs to operate in parallel on every computer. Besides the inherent complexity of designing/implementing parallel algorithms, distributed parallel algorithm require an execution framework that encapsulates as much as possible network communication and data remoteness. 
+
+Apache Giraph
+
+Spark GraphX
+
+Other tools Pregelix, Graphlab
+
+\section{Motivations}
+
+suited to experimentation
+
+quick
+
+easy to use
+
+
+\section{Input data}
+
+TSV file
+
+distributed binary files
+
+topology generators (reverser)
+
+\section{Data structure}
+	decentralized
+	mutable
+	
+	if all elements in set can be stored on 32 bits only, they do. The presence of one single elements requiring more than 32 bits will result in all elements being encoded on 64 bits
+	
+\subsection{Memory utilization}
+
+\section{Programming models}
+\subsection{Centralized}
+
+enable the use of distance object just like if it were local
+services
+
+\subsection{Map/Reduce}
+
+
+
+\subsection{BSP}
+
+
+\section{algorithms}
+
+\section{Diameter}
+doing sequence of BFS.
+iFUB
+
+\section{Strongly connected components}
+avg degree 58
+max degree 24M
+
+
+@TECHREPORT{Pearce05animproved,
+    author = {David J. Pearce},
+    title = {An improved algorithm for finding the strongly connected components of a directed graph},
+    institution = {},
+    year = {2005}
+}
+
+Tarjan iterative in parallel on each local machine, by not considering non-local vertices
+ideas from http://www.scipy.org
+in particular hashtable-based stack. One hashtable stored the vertex below in the stack, another hashtable stores the vertex above.
+On small graphs, Using maps fastens the algorithm by a factor 100. The initial size of the map can be initiliazed with the right value. This results in no reallocation.
+
+at the end of Tarjan, we have a distributd table which associates to each vertex the ID of the smallest vertex of the scc.
+
+construct a distributed graph:
+1 thread per node which iterates on the local adj list and retrieves (in a cache) the scc number of the remote vertice
+1 thread which iterates in the same way and fills the new graph with the values found in the cache fed by the other treads
+if the info cannot be found in the cache, the threads waits until the data has been made available by the other thread
+in practise, on the twitter, we observe between and 10 and 15 cache miss at the begining of the construction process, after what there  is no wait
+
+the new graph has 3/4 vertices  that the initial one  400M =>  300Mvertices
+the new graph has 1/10 acrs  that the initial one 24M => 2.4M arcs
+avg degree  8
+max degree 114M
+
+the number of messages send in the subsequent BSP process is proportional to the number of arcs
+=> huge benefit
+
+iteratively prune the graph by affecting the ID for the scc of size 1
+there is a byte table which informs if the affectation is definitive or not
+on twitter graph, 350 iterations, in 10-15mn.
+7-8 millions of size-1 are considered by node
+after the pruning, 1/3 of the vertices has be affected to size-1 scc
+
+then each node sends its ID to its neigbors
+only the minimum is sent by combining saves a lot of bandwidth
+
+then from each root (vertices whose ID = scc ID) vertices, in reverse order forwards its ID, and reached vertices check if their SCC ID is the right one
+
+
+
+
+
+
+
+
+
+
+
+\subsection{platform algorithms}
+edge-locality
+
+
+
+\end{document}

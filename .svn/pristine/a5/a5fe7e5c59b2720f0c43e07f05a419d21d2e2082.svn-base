@@ -1,0 +1,81 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+// 
+//                 Université de Nice Sophia-Antipolis  (UNS) - 
+//                 Centre National de la Recherche Scientifique (CNRS)
+//                 Copyright © 2015 UNS, CNRS All Rights Reserved.
+// 
+//     These computer program listings and specifications, herein, are
+//     the property of Université de Nice Sophia-Antipolis and CNRS
+//     shall not be reproduced or copied or used in whole or in part as
+//     the basis for manufacture or sale of items without written permission.
+//     For a license agreement, please contact:
+//     <mailto: licensing@sattse.com> 
+//
+//
+//
+//     Author: Luc Hogie – Laboratoire I3S - luc.hogie@unice.fr
+//
+//////////////////////////////////////////////////////////////////////////////////////////
+
+package biggrph;
+
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import toools.io.DataBinaryEncoding;
+import toools.io.block.BlockReader;
+import toools.io.block.DataBlock;
+import toools.io.block.SimpleBlockReader;
+
+class BinaryReader
+{
+	private DataBlock currentBlock;
+	private int i = 0;
+	private final BlockReader pr;
+	private final byte[] buf = new byte[8];
+
+	public BinaryReader(InputStream is) throws IOException
+	{
+		pr = new SimpleBlockReader(is, 1000000);
+	}
+
+
+	private void fillBuffer(int n) throws IOException
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			if (currentBlock == null || i == currentBlock.actualSize)
+			{
+				currentBlock = pr.readBlock();
+
+				if (currentBlock.actualSize == -1)
+				{
+					throw new EOFException();
+				}
+
+				i = 0;
+			}
+
+			buf[j] = currentBlock.buf[i++];
+		}
+	}
+
+	public long readLong() throws IOException
+	{
+		fillBuffer(8);
+		return DataBinaryEncoding.readLong(buf, 0);
+	}
+
+	public int readInt() throws IOException
+	{
+		fillBuffer(4);
+		return DataBinaryEncoding.readInt(buf, 0);
+	}
+
+	public boolean readBoolean() throws IOException
+	{
+		fillBuffer(1);
+		return DataBinaryEncoding.readBoolean(buf, 0);
+	}
+}

@@ -1,0 +1,30 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Nicolas Chleq, Luc Hogie, Michel Syska}
+\begin{document}
+
+\section{Input data}
+
+
+\section{Data structure}
+	decentralized
+	mutable
+	
+	if all elements in set can be stored on 32 bits only, they do. The presence of one single elements requiring more than 32 bits will result in all elements being encoded on 64 bits
+	
+\subsection{Memory utilization}
+
+\section{Programming models}
+\subsection{Centralized}
+\subsection{Map/Reduce}
+\subsection{BSP}
+
+
+\section{algorithms}
+\subsection{}
+
+
+\end{document}
