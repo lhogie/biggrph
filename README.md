@@ -1,4 +1,4 @@
-BigGrph is the second software component of the Cnrs BigGraphs platform, which is a suite of Research tools for the experimentation of distributed algorithms on large graphs.
+BigGrph is the second software component of the Cnrs BigGraphs platform, which is a suite of Research tools for the experimentation of distributed algorithms on large graphs. BigGrph itself is discontinued but the platform keeps going through the development of more recent tools.
 
 It consists of the following software developments:
 * [Grph](https://github.com/lhogie/grph/) (discontinued)
