@@ -2,7 +2,7 @@ BigGrph is the second software component of the Cnrs BigGraphs platform, which i
 
 It consists of the following software developments:
 * [Grph](https://github.com/lhogie/grph/) - a high-performance graph library. (discontinued) 
-* BigGrph (this page) and its sub-projects - a distributed graph library. (discontinued)
+* BigGrph (this page) - a distributed graph library and its sub-projects. (discontinued)
   * [LDJO](https://github.com/lhogie/ldjo/) - a framework for distributed data structures.
   * [Octojus](https://github.com/lhogie/octojus/) - RPC middleware.
   * [Jacaboo](https://github.com/lhogie/jacaboo/) - a Java application deployer/bootstrapper.
